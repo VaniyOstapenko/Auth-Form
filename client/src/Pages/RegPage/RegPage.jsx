@@ -2,8 +2,20 @@ import Header from "../../Components/Header/Header";
 import style from "../RegPage/style.module.scss";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { useState } from "react";
+import axios from "axios";
 
 function RegPage() {
+  const [data, setData] = useState({});
+  function changeState(e) {
+    setData({ ...data, [e.target.name]: e.target.value });
+  }
+
+  async function clickButton() {
+    const response = await axios.post("http://localhost:3000/user/", data);
+    console.log(response);
+  }
+
   return (
     <>
       <Header></Header>
@@ -17,35 +29,44 @@ function RegPage() {
 
         <div className={style.name}>
           <TextField
+            onChange={changeState}
             style={{ width: "100%" }}
             id="outlined-basic"
             label="Your name"
             variant="outlined"
+            name="name"
           />
           <TextField
+            onChange={changeState}
             style={{ width: "100%" }}
             id="outlined-basic"
             label="Your surname"
             variant="outlined"
+            name="surname"
           />
         </div>
         <div>
           <TextField
+            onChange={changeState}
             style={{ width: "100%" }}
             id="outlined-basic"
             label="Your email"
             variant="outlined"
+            name="email"
           />
         </div>
         <div>
           <TextField
+            onChange={changeState}
             style={{ width: "100%" }}
             id="outlined-basic"
             label="Must be at least 8 characters."
             variant="outlined"
+            name="password"
           />
         </div>
         <Button
+          onClick={clickButton}
           style={{ width: "15%", marginLeft: "auto" }}
           variant="contained"
         >

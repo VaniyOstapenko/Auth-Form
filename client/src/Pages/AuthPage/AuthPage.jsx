@@ -2,8 +2,22 @@ import Header from "../../Components/Header/Header";
 import style from "../AuthPage/style.module.scss";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { useState } from "react";
+import axios from "axios";
 
 function AuthPage() {
+  const [data, setData] = useState({});
+
+  function changeInput(e) {
+    setData({ ...data, [e.target.name]: e.target.value });
+  }
+
+  async function clickButton() {
+    const response = await axios.post("http://localhost:3000/user/auth", data, {
+      withCredentials: true,
+    });
+    console.log(response);
+  }
   return (
     <>
       <Header></Header>
@@ -16,6 +30,8 @@ function AuthPage() {
 
         <div>
           <TextField
+            onChange={changeInput}
+            name="email"
             style={{ width: "100%" }}
             id="outlined-basic"
             label="Your email"
@@ -24,6 +40,8 @@ function AuthPage() {
         </div>
         <div>
           <TextField
+            onChange={changeInput}
+            name="password"
             style={{ width: "100%" }}
             id="outlined-basic"
             label="Must be at least 8 characters."
@@ -31,6 +49,7 @@ function AuthPage() {
           />
         </div>
         <Button
+          onClick={clickButton}
           style={{ width: "15%", marginLeft: "auto" }}
           variant="contained"
         >

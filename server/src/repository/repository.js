@@ -19,4 +19,13 @@ async function createUsersDB(name, surname, email, password) {
     }
 }
 
-module.exports = { createUsersDB };
+async function authUserDB(email, password) {
+    const client = await pool.connect();
+    const sql = `select * from users where email = $1 and password = $2`;
+
+    const result = (await client.query(sql, [email, password])).rows;
+
+    return result;
+}
+
+module.exports = { createUsersDB, authUserDB };
