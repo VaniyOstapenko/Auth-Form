@@ -8,11 +8,11 @@ import axios from "axios";
 function AuthPage() {
   const [data, setData] = useState({});
 
-  function changeInput(e) {
+  function changeInp(e) {
     setData({ ...data, [e.target.name]: e.target.value });
   }
 
-  async function clickButton() {
+  async function clickBtn() {
     const response = await axios.post("http://localhost:3000/user/auth", data, {
       withCredentials: true,
     });
@@ -40,7 +40,7 @@ function AuthPage() {
         </div>
         <div>
           <TextField
-            onChange={changeInput}
+            onChange={changeInp}
             name="password"
             style={{ width: "100%" }}
             id="outlined-basic"
@@ -49,7 +49,7 @@ function AuthPage() {
           />
         </div>
         <Button
-          onClick={clickButton}
+          onClick={clickBtn}
           style={{ width: "15%", marginLeft: "auto" }}
           variant="contained"
         >
