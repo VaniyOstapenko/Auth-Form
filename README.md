@@ -1,7 +1,7 @@
 # AuthForm
-## This project is a user authorization and registration system for your web application.
+### This project is a user authorization and registration system for your web application.
 
-### Client-Side:
+#### Client-Side:
 
 - JavaScript
 - React
@@ -9,7 +9,7 @@
 - Material UI (for the user interface)
 - ESLint and Prettier (for code formatting and linting)
 
-- ### Server-Side:
+- #### Server-Side:
 
 - JavaScript
 - Node.js
